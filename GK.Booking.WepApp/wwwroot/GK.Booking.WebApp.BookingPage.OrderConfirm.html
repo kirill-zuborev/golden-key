@@ -1,0 +1,25 @@
+﻿<div class="order-confirm-content">
+    <gk_booking_lock-screen is-shown="isRequestInProgress">
+    </gk_booking_lock-screen>
+    <div class="order-confirm-section" ng-if="!isOrderExpired">
+        <p>
+            Последний этап: На ваш номер телефона был выслан
+            очень секретный код подтверждения заказа. Теперь у вас есть вот столько времени:
+            <time><gk_booking_web-app_visual-timer target-milliseconds="orderValue.orderLifeTimeMilliseconds" on-finish="onOrderExpired()"></gk_booking_web-app_visual-timer></time>
+            для того, чтобы ввести полученный код в поле ниже и подтвердить заказ. В противном случае
+            он будет отменён и кто-нибудь в забронированное вами ранее время будет жадно жевать блинчик,
+            который мог бы достаться вам.
+        </p>
+        <form class="control-container" name="secretCodeForm" ng-submit="confirmOrder()">
+            <input type="text" required ng-model="secretCode" placeholder="Секретный код" maxlength="10"/>
+            <input type="submit" value="Подтвердить заказ" />
+            <small class="secondary radius label" ng-if="message != null">{{message}}</small>
+        </form>
+    </div>
+    <div class="order-expired-section" ng-if="isOrderExpired">
+        <p>
+            К сожалению, вы не успели вовремя подтвердить свой заказ и он был отменён.
+            Вы можете вернуться на <a ng-click="returnToCreatedCallback()">экран своего заказа</a> или <a ng-click="returnToNewCallback()">сделать новый</a>.
+        </p>
+    </div>
+</div>

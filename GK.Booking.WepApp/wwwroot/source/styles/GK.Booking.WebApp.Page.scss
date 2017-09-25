@@ -1,0 +1,98 @@
+﻿$gk_booking_web-app_page_page-margin: 3em;
+
+gk_booking_web-app_page {
+    display: block;
+    position: relative;
+    min-height: 100%;
+    color: $gk_booking_web-app_primary-text-color;
+
+    &__nav {
+        display: block;
+    }
+
+    &__content {
+        display: block;
+        //min-height: 83.3vh;
+    }
+
+    @media #{$small-only} {
+        &__content {
+            display: block;
+            min-height: calc(100vh - 2.3em - 2.8125rem); // 83.3vh;
+        }
+    }
+
+    &__footer {
+        @extend .row;
+        display: block;
+        background-color: $gk_booking_web-app_primary-color;
+        opacity: 0.8;
+        height: 2.3em;
+        position: relative;
+        margin: 0 !important;
+
+        .formatted {
+            padding: 0;
+        }
+
+        .group-link {
+            color: white;
+            font-size: 0.9em;
+            font-weight: lighter;
+            padding: 0.3em;
+        }
+
+        &_text {
+            color: white;
+            font-size: 0.6em;
+            font-weight: lighter;
+            display: block;
+            line-height: 1em;
+            padding: 0.35em 0 0 0;
+
+			@media #{$small-only} {
+				font-size: 0.5em;
+                padding: 0.7em 0 0 0;
+			}
+        }
+
+        /*@media #{$small-only} {
+            &_text {
+                color: white;
+                font-size: 0.5em;
+                font-weight: lighter;
+                display: block;
+                line-height: 1em;
+                padding: 0.7em 0 0 0;
+            }
+        }*/
+    }
+
+    &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-repeat: repeat-x repeat-y;
+        background-image: url('GK.Booking.WebApp.PageBackground.jpg');
+        opacity: 0.3;
+        z-index: -1;
+    }
+
+    @media #{$medium-up} {
+        padding: $gk_booking_web-app_page_page-margin 0;
+        margin: auto;
+    }
+
+    @media #{$medium-up} {
+        .row {
+            border-style: solid;
+            border-width: 2px;
+            border-color: $gk_booking_web-app_primary-color;
+            width: $small-breakpoint - $gk_booking_web-app_page_page-margin * 2;
+        }
+    }
+}

@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Золотой ключик. Кухня</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="wwwroot/GK.Booking.KitchenScreen.Styles.css" />
+</head>
+<body>
+    <div ng-app="GK.Booking.KitchenScreen.OrdersController" ng-cloak>
+        <div ng-controller="GK.Booking.KitchenScreen.OrdersController">
+
+            <gk_booking_logout-control on-logout-click="logout()">
+            </gk_booking_logout-control>
+
+            <div class="row" ng-if="orders.length != 0">
+                <br />
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Содержание заказа</th>
+                            <th>Номер телефона</th>
+                            <th>Время подачи</th>
+                            <th>Время заказа</th>
+                            <th>Общая цена</th>
+                            <th>Статус</th>
+                            <th>До подачи</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="order in orders" ng-class="{'alert': getRemainingTimeInMinutes(order.TargetStartTime) < 5, 'ready': order.OrderStatus == Constant.ORDER_READY}">
+                            <td>
+                                <div ng-repeat="line in order.OrderLines">{{line.Name}} ({{line.Price}} р.)</div>
+                            </td>
+                            <td>{{order.CustomerPhoneNumber | PhoneNumber: 2}}</td>
+                            <td>{{order.TargetStartTime}} --- {{order.TargetEndTime}}</td>
+                            <td>{{order.CreationTime}}</td>
+                            <td>{{order.TotalPrice}}</td>
+                            <td ng-class="{'marked-text': order.OrderStatus == Constant.ORDER_READY}" class="status-column">{{order.OrderStatus | OrderStatus}}</td>
+                            <td ng-class="{'marked-text': getRemainingTimeInMinutes(order.TargetStartTime) < 5}">{{getRemainingTime(order.TargetEndTime)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="splash-screen" ng-if="orders.length == 0"></div>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/foundation.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/foundation/foundation.topbar.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" />
+
+    <script src="wwwroot/GK.Booking.KitchenApp.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+﻿<gk_booking_web-app_page>
+    <gk_booking_web-app_error-page__content ng-if="serverError != null">
+        <gk_booking_web-app_error-page__error-logo>
+            Error
+        </gk_booking_web-app_error-page__error-logo>
+        <gk_booking_web-app_error-page__primary-page-text>
+            Во время работы приложения произошла ошибка. Это может быть связано с рядом причин. Для того
+            чтобы в них разобраться и помочь улучшить наш сайт мы предлагаем вам
+            <a ng-click="notifyError()" ng-if="!isNotificationSent">отправить данные об ошибке разработчикам.</a>
+            <span ng-if="isNotificationSent">отправить данные об ошибке разработчикам (уже отправлено).</span>
+            <br />
+            Вернуться и <a ng-click="">повторить заказ</a>.
+        </gk_booking_web-app_error-page__primary-page-text>
+        <gk_booking_web-app_error-page__status-code>
+            {{serverError.statusCode}}
+        </gk_booking_web-app_error-page__status-code>
+        <gk_booking_web-app_error-page__status-text>
+            {{serverError.text}}
+        </gk_booking_web-app_error-page__status-text>
+    </gk_booking_web-app_error-page__content>
+</gk_booking_web-app_page>

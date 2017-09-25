@@ -1,0 +1,178 @@
+﻿<gk_booking_web-app_page>
+    <script>$(document).foundation('dropdown', 'reflow');</script>
+    <gk_booking_web-app_booking-page_order-screen ng-if="isOrderScreenShowed()">
+        <gk_booking_web-app_booking-page__tray>
+            <div>
+                <gk_booking_web-app_booking-page__tray-title>
+                    Ваш заказ: <span>(макс. <strong>{{applicationParameters.maxOrderCost}}</strong> бел.р.)</span>
+                    <span ng-if="!(getProductTotalPrice() > 0)"><br />Пусто :(</span>
+                </gk_booking_web-app_booking-page__tray-title>
+                <gk_booking_web-app_booking-page__product-list ng-if="getProductTotalPrice() > 0">
+                    <gk_booking_web-app_booking-page__tray-product ng-repeat="trayItem in order.tray">
+                        <gk_booking_web-app_booking-page__tray-product-name>
+                            "{{trayItem.product.name}}"
+                        </gk_booking_web-app_booking-page__tray-product-name>
+                        <gk_booking_web-app_booking-page__tray-product-button ng-click="removeProduct(trayItem)">
+                            <gk_booking_web-app_booking-page__tray-product-price>
+                                {{trayItem.product.price}}
+                            </gk_booking_web-app_booking-page__tray-product-price>
+                            <gk_booking_web-app_booking-page__tray-product-button-icon>-</gk_booking_web-app_booking-page__tray-product-button-icon>
+                        </gk_booking_web-app_booking-page__tray-product-button>
+                    </gk_booking_web-app_booking-page__tray-product>
+                </gk_booking_web-app_booking-page__product-list>
+                <gk_booking_web-app_booking-page__total-sum-container ng-if="getProductTotalPrice() > 0">
+                    <gk_booking_web-app_booking-page__total-sum-text>
+                        Итого
+                    </gk_booking_web-app_booking-page__total-sum-text>
+                    <gk_booking_web-app_booking-page__total-sum-value>
+                        {{getProductTotalPrice()}} бел.р.
+                    </gk_booking_web-app_booking-page__total-sum-value>
+                </gk_booking_web-app_booking-page__total-sum-container>
+                <gk_booking_web-app_booking-page_order-button ng-if="getProductTotalPrice() > 0 && order.selectedTime != null"
+                                                              ng-click="doWorkByTimeMapTrayState(loadPhoneNumberScreen)">
+                    Заказать
+                </gk_booking_web-app_booking-page_order-button>
+                <gk_booking_web-app_booking-page_time-map-button ng-if="getProductTotalPrice() > 0"
+                                                                 ng-click="loadSelectTimeScreen()">
+                    <span ng-if="order.selectedTime == null">Выбрать время</span>
+                    <span ng-if="order.selectedTime != null">{{order.selectedTime.targetStartTime}} --- {{order.selectedTime.targetEndTime}}</span>
+                </gk_booking_web-app_booking-page_time-map-button>
+            </div>
+
+        </gk_booking_web-app_booking-page__tray>
+        <gk_booking_web-app_booking-page__menu>
+            <gk_booking_web-app_booking-page__menu-categories>
+                <gk_booking_web-app_booking-page__menu-category ng-repeat="category in categories"
+                                                                class="small-4 columns"
+                                                                ng-class="{'active': getSelectedMenuCategory() == category}"
+                                                                ng-click="setSelectedMenuCategory(category);">
+                    {{category}}
+                </gk_booking_web-app_booking-page__menu-category>
+            </gk_booking_web-app_booking-page__menu-categories>
+            <div>
+                <gk_booking_web-app_booking-page__product-list>
+                    <gk_booking_web-app_booking-page__product-wrapper ng-repeat="product in products | filter: {category: getSelectedMenuCategory()}">
+                        <gk_booking_web-app_booking-page__active-product ng-show="getRemainingAmount() - product.price >= 0">
+                            <gk_booking_web-app_booking-page__active-product-name ng-click="orderDescDialogText.value = product.desc"
+                                                                                  data-dropdown="menuItemDescriptionDialog"
+                                                                                  aria-controls="menuItemDescriptionDialog"
+                                                                                  aria-expanded="false">
+                                "{{product.name}}"
+                                <gk_booking_web-app_booking-page__product-item-helper ng-if="product.desc != null">
+                                    <img src="wwwroot/GK.Booking.WebApp.BookingPage.Tip.png" />
+                                </gk_booking_web-app_booking-page__product-item-helper>
+                            </gk_booking_web-app_booking-page__active-product-name>
+                            <gk_booking_web-app_booking-page__active-product-button ng-click="addProduct(product)">
+                                <gk_booking_web-app_booking-page__active-product-price>
+                                    {{product.price}}
+                                </gk_booking_web-app_booking-page__active-product-price>
+                                <gk_booking_web-app_booking-page__tray-product-button-icon>+</gk_booking_web-app_booking-page__tray-product-button-icon>
+                            </gk_booking_web-app_booking-page__active-product-button>
+                        </gk_booking_web-app_booking-page__active-product>
+
+                        <gk_booking_web-app_booking-page__inactive-product ng-show="getRemainingAmount() - product.price < 0">
+                            <gk_booking_web-app_booking-page__inactive-product-name ng-click="orderDescDialogText.value = product.desc"
+                                                                                    data-dropdown="menuItemDescriptionDialog"
+                                                                                    aria-controls="menuItemDescriptionDialog"
+                                                                                    aria-expanded="false">
+                                "{{product.name}}"
+                                <gk_booking_web-app_booking-page__product-item-helper ng-if="product.desc != null">
+                                    <img src="wwwroot/GK.Booking.WebApp.BookingPage.Tip.png" />
+                                </gk_booking_web-app_booking-page__product-item-helper>
+                            </gk_booking_web-app_booking-page__inactive-product-name>
+                            <gk_booking_web-app_booking-page__inactive-product-button>
+                                <gk_booking_web-app_booking-page__inactive-product-price>
+                                    {{product.price}}
+                                </gk_booking_web-app_booking-page__inactive-product-price>
+                            </gk_booking_web-app_booking-page__inactive-product-button>
+                        </gk_booking_web-app_booking-page__inactive-product>
+                    </gk_booking_web-app_booking-page__product-wrapper>
+                </gk_booking_web-app_booking-page__product-list>
+                <a data-dropdown="menuItemDescriptionDialog" aria-controls="menuItemDescriptionDialog" aria-expanded="false" style="display: none;"></a>
+                <div id="menuItemDescriptionDialog" data-dropdown-content class="f-dropdown content" aria-hidden="true" tabindex="" ng-if="orderDescDialogText.value != null">
+                    {{orderDescDialogText.value}}
+                </div>
+            </div>
+        </gk_booking_web-app_booking-page__menu>
+    </gk_booking_web-app_booking-page_order-screen>
+    <gk_booking_web-app_booking-page_select-time-screen ng-if="isTimeScreenShowed()">
+        <gk_booking_web-app_booking-page_back-button ng-click="loadOrderScreen()">
+            К заказу&hellip;
+        </gk_booking_web-app_booking-page_back-button>
+        <gk_booking_web-app_booking-page__primary-page-text>
+            Выберите время к которому Вам удобнее забрать заказ
+        </gk_booking_web-app_booking-page__primary-page-text>
+        <gk_booking_web-app_time-map on-choise="setOrderTime(timeInterval)"
+                                     on-close="loadOrderScreen()"
+                                     on-empty="goHomePage()">
+        </gk_booking_web-app_time-map>
+    </gk_booking_web-app_booking-page_select-time-screen>
+    <gk_booking_web-app_booking-page_correct-time-screen ng-if="isCorrectTimeScreenShowed()">
+        <gk_booking_web-app_booking-page_back-button ng-click="loadOrderScreen()">
+            К заказу&hellip;
+        </gk_booking_web-app_booking-page_back-button>
+        <gk_booking_web-app_booking-page__page-text>
+            К сожалению выбранное вами ранее время уже занято :(, пожалуйста выберите другое.
+        </gk_booking_web-app_booking-page__page-text>
+        <gk_booking_web-app_time-map on-choise="setOrderTime(timeInterval)"
+                                     on-close="loadPreviousScreen()"
+                                     on-empty="goHomePage()">
+        </gk_booking_web-app_time-map>
+    </gk_booking_web-app_booking-page_correct-time-screen>
+    <gk_booking_web-app_booking-page_number-screen ng-if="isPhoneNumberScreenShowed()">
+        <gk_booking_web-app_booking-page_back-button ng-click="loadOrderScreen()">
+            К заказу&hellip;
+        </gk_booking_web-app_booking-page_back-button>
+        <gk_booking_web-app_booking-page__primary-page-text>
+            Для продолжения оформления заказа Вам необходимо ввести
+            номер телефона на который будет отправлен секретный код
+            для подтверждения заказа. Что делать дальше, узнаете потом :)
+        </gk_booking_web-app_booking-page__primary-page-text>
+        <gk_booking_web-app_booking-page__page-text>
+            Обратите внимание на то, что вопреки нашей безграничной жадности смс приходят на халяву.
+            Но если вы сделаете заказ и не придёте за ним <strike>в мире станет на одного грустного котика больше</strike> мы очень обидимся и больше не
+            будем принимать заказы с этого номера :(
+            <br />
+        </gk_booking_web-app_booking-page__page-text>
+        <gk_booking_web-app_booking-page_phone-number value="order.phoneNumber"
+                                                      on-submit="pushOrder()">
+        </gk_booking_web-app_booking-page_phone-number>
+    </gk_booking_web-app_booking-page_number-screen>
+    <gk_booking_web-app_booking-page_secret-screen ng-if="isSecretScreenShowed()">
+        <gk_booking_web-app_booking-page_order-confirm order-value="order"
+                                                       on-confirmed="loadConfirmedScreen()"
+                                                       on-return-to-created="loadPartiallyCreatedOrderScreen()"
+                                                       on-return-to-new="loadNewOrderScreen()">
+        </gk_booking_web-app_booking-page_order-confirm>
+    </gk_booking_web-app_booking-page_secret-screen>
+    <gk_booking_web-app_booking-page_confirmed-screen ng-if="isConfirmedScreenShowed()">
+        <gk_booking_web-app_booking-page__primary-page-text>
+            Поздравляем, вы дошли до конца. Ваш заказ принят и теперь в дело вступит наш замечательный повар. Как всегда он приготовит всё в самом лучшем виде,
+            а Вам останется лишь забрать заказ и сполна насладиться плодами его кулинарного таланта.
+            Теперь подведём итоги:
+            <br />
+        </gk_booking_web-app_booking-page__primary-page-text>
+        <gk_booking_web-app_booking-page__page-text>
+            Ваш заказ:<br />
+            <gk_booking_web-app_booking-page__product-list>
+                <gk_booking_web-app_booking-page__confirmed-product ng-repeat="trayItem in order.tray">
+                    <gk_booking_web-app_booking-page__confirmed-product-name>
+                        "{{trayItem.product.name}}"
+                    </gk_booking_web-app_booking-page__confirmed-product-name>
+                    <gk_booking_web-app_booking-page__confirmed-product-price>
+                        <gk_booking_web-app_booking-page__confirmed-product-round>
+                            {{trayItem.product.price}}
+                        </gk_booking_web-app_booking-page__confirmed-product-round>
+                    </gk_booking_web-app_booking-page__confirmed-product-price>
+                </gk_booking_web-app_booking-page__confirmed-product>
+                <gk_booking_web-app_booking-page__total-line />
+                Стоимость заказа: <b>{{getProductTotalPrice()}}</b> бел.р.
+            </gk_booking_web-app_booking-page__product-list>
+            Будет приготовлен к {{order.selectedTime.targetStartTime}} --- {{order.selectedTime.targetEndTime}}
+        </gk_booking_web-app_booking-page__page-text>
+        <gk_booking_web-app_booking-page__centered-general-text>
+            <br />Спасибо за заказ!
+        </gk_booking_web-app_booking-page__centered-general-text>
+    </gk_booking_web-app_booking-page_confirmed-screen>
+    <gk_booking_lock-screen is-shown="isScreenLocked" />
+</gk_booking_web-app_page>

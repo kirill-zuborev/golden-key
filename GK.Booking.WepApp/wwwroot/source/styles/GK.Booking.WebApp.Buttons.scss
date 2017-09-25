@@ -1,0 +1,32 @@
+﻿gk_booking_web-app_button {
+	display: inline-block;
+	padding: 0 0.5em;
+	border: solid 2px $gk_booking_web-app_primary-color;
+	line-height: 2em;
+	color: $gk_booking_web-app_primary-color;
+	font-weight: bold;
+	cursor: pointer;
+	text-align: center;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+
+	&:active {
+		position: relative;
+		top: 1px;
+	}
+}
+
+gk_booking_web-app_submit-button {
+	color: $gk_booking_web-app_primary-color;
+	//color: $gk_booking_web-app_brand-color;
+	background-color: transparent;
+	border: none;
+	text-decoration: underline;
+
+	&:active {
+		position: relative;
+		top: 1px;
+	}
+}

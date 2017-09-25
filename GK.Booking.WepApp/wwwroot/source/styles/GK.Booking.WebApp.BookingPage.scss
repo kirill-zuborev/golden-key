@@ -1,0 +1,353 @@
+﻿
+/*Basic styles for product controls group*/
+product-base {
+	display: block;
+	position: relative;
+	margin: 0.5em;
+}
+
+product-name-base {
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+
+	&:after {
+		cursor: auto;
+		content: ".................................................." ".................................................." ".................................................." "..................................................";
+	}
+}
+
+product-button-base {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0 0.3em;
+	background: $gk_booking_web-app_contr-color;
+	border: solid 2px;
+	border-color: $gk_booking_web-app_primary-color;
+	border-radius: 1em;
+	color: $gk_booking_web-app_primary-color;
+	font-size: 0.9em;
+	font-weight: bold;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+
+	&:active {
+		border-width: 3px;
+	}
+}
+
+product-round-base {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0 0.3em;
+	background: $gk_booking_web-app_contr-color;
+	font-size: 0.9em;
+}
+
+product-price-base {
+	display: block;
+	overflow: hidden;
+	float: left;
+}
+
+product-button-icon-base {
+	display: block;
+	width: 1em;
+	margin-left: 0.2em;
+	margin: 0.25em 0 0.25em 0.25em;
+	line-height: 1em;
+	text-align: center;
+	overflow: hidden;
+	background: $gk_booking_web-app_primary-color;
+	border-radius: 50%;
+	color: $gk_booking_web-app_contr-color;
+	float: left;
+	font-family: Lucida Sans Unicode;
+}
+/*----------------------------------------------*/
+
+gk_booking_web-app_booking-page {
+	&__product-list {
+		display: block;
+	}
+
+	&__product-wrapper {
+		display: block;
+
+		&.ng-enter {
+			-webkit-animation: bounceInLeft 0.5s;
+			animation: bounceInLeft 0.5s;
+		}
+	}
+	/*Tray products*/
+	&__tray-product {
+		@extend product-base;
+
+		&.ng-enter {
+			-webkit-animation: bounceInLeft 0.5s;
+			animation: bounceInLeft 0.5s;
+		}
+
+		&.ng-leave {
+			-webkit-animation: bounceOutRight 0.5s;
+			animation: bounceOutRight 0.5s;
+		}
+	}
+
+	&__tray-product-name {
+		@extend product-name-base;
+	}
+
+	&__tray-product-button {
+		@extend product-button-base;
+	}
+
+	&__tray-product-round {
+		@extend product-round-base;
+	}
+
+	&__tray-product-price {
+		@extend product-price-base;
+	}
+
+	&__tray-product-button-icon {
+		@extend product-button-icon-base;
+	}
+	/*---------------------------------------------*/
+	&__active-product {
+		@extend product-base;
+
+		&.ng-hide-remove {
+			-webkit-animation: flipInX 1s;
+			animation: flipInX 1s;
+		}
+	}
+
+	&__active-product-name {
+		@extend product-name-base;
+		cursor: pointer;
+	}
+
+	&__active-product-button {
+		@extend product-button-base;
+	}
+
+	&__active-product-round {
+		@extend product-round-base;
+	}
+
+	&__active-product-price {
+		@extend product-price-base;
+	}
+
+	&__active-product-button-icon {
+		@extend product-button-icon-base;
+	}
+
+	&__inactive-product {
+		@extend product-base;
+
+		&.ng-hide-remove {
+			-webkit-animation: flipInX 1s;
+			animation: flipInX 1s;
+		}
+	}
+
+	&__inactive-product-name {
+		@extend product-name-base;
+		text-decoration: line-through;
+		cursor: pointer;
+
+		&:after {
+			text-decoration: none;
+			display: inline-block;
+		}
+	}
+
+	&__inactive-product-button {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 0 0.3em;
+		background: $gk_booking_web-app_contr-color;
+		color: $gk_booking_web-app_primary-color;
+	}
+
+	&__inactive-product-round {
+		@extend product-round-base;
+	}
+
+	&__inactive-product-price {
+		@extend product-price-base;
+	}
+	/*Confirmed screen*/
+	&__confirmed-product {
+		@extend product-base;
+	}
+
+	&__confirmed-product-name {
+		@extend product-name-base;
+	}
+
+	&__confirmed-product-button {
+		@extend product-button-base;
+	}
+
+	&__confirmed-product-round {
+		@extend product-round-base;
+	}
+
+	&__confirmed-product-price {
+		@extend product-price-base;
+	}
+	/*---------------------------------------------*/
+	&__product-item-helper {
+		//color: $gk_booking_web-app_primary-color;
+		display: inline-block;
+		cursor: pointer;
+		width: 1.3em;
+	}
+
+	&__tray {
+		display: block;
+		overflow: hidden;
+	}
+
+	&__total-line {
+		@extend hr;
+		border-color: $gk_booking_web-app_primary-color;
+		margin: 0em 0.9em;
+	}
+
+	&__total-sum-container {
+		@extend product-base;
+	}
+
+	&__total-sum-text {
+		@extend product-name-base;
+		margin-left: 0.5em;
+	}
+
+	&__total-sum-value {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 0 0.3em;
+		background: $gk_booking_web-app_contr-color;
+		color: $gk_booking_web-app_primary-color;
+		font-weight: bold;
+	}
+
+	&_order-button {
+		@extend gk_booking_web-app_button;
+		float: right;
+		margin: 0.5em;
+	}
+
+	&_time-map-button {
+		@extend gk_booking_web-app_button;
+		float: right;
+		margin: 0.5em;
+	}
+
+	&_back-button {
+		position: relative;
+		margin: 0.3em;
+		font-size: 1em;
+		font-weight: bold;
+		line-height: 1.5em;
+		text-decoration: underline;
+		color: $gk_booking_web-app_primary-color;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	&__tray-title {
+		display: block;
+		font-weight: bold;
+		margin: 0.5em;
+
+		span:first-child {
+			font-weight: normal;
+		}
+	}
+
+	&__page-text {
+		border-radius: 5%;
+		text-indent: 1em;
+		font-size: 0.9em;
+		padding: 0.5em;
+		display: block;
+		color: $gk_booking_web-app_primary-text-color;
+	}
+
+	&__primary-page-text {
+		text-indent: 1em;
+		font-size: 0.9em;
+		padding: 0.5em;
+		display: block;
+		font-weight: bold;
+		color: $gk_booking_web-app_primary-color;
+	}
+
+	&__centered-general-text {
+		text-indent: 1em;
+		text-align: center;
+		display: block;
+		font-weight: bold;
+		font-size: 1.3em;
+		color: $gk_booking_web-app_primary-color;
+	}
+
+	&__menu {
+		display: block;
+		overflow: hidden;
+	}
+
+	&__menu-categories {
+		display: block;
+		margin-top: 1px;
+		overflow: hidden;
+		background-color: $gk_booking_web-app_primary-color;
+	}
+
+	&__menu-category {
+		background-color: $gk_booking_web-app_primary-color;
+		color: $gk_booking_web-app_contr-color;
+		font-weight: normal;
+		font-size: 1em;
+		line-height: 2.2em;
+		text-align: center;
+		cursor: pointer;
+
+		&:hover {
+			background-color: $gk_booking_web-app_primary-color_hover;
+		}
+
+		&.active {
+			background-color: $gk_booking_web-app_primary-color_active;
+		}
+	}
+}
+
+div#menuItemDescriptionDialog {
+	opacity: 0.93;
+	padding: 0.9em;
+
+	@media #{$small-only} {
+		max-width: 71% !important;
+		left: 10px !important;
+	}
+}

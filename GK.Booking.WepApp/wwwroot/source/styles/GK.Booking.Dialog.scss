@@ -1,0 +1,61 @@
+﻿@import "../../vendor/foundation/scss/foundation/components/reveal";
+@import "GK.Booking.WebApp.Colors";
+@import 'GK.Booking.WebApp.Buttons';
+
+.reveal-modal {
+	background-color: $reveal-modal-bg;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	max-width: 30em;
+
+	.close-reveal-modal {
+		font-size: 2em;
+	}
+
+	.dialog {
+
+		.dialog-header {
+			padding: 0.3em 0 0 0.5em;
+			margin: 0;
+			height: 3em;
+			background-color: $gk_booking_web-app_primary-color;
+			color: white;
+
+			h4 {
+				color: white;
+				font-weight: normal;
+			}
+		}
+
+		.dialog-content {
+			padding: 2.5em;
+		}
+
+		.dialog-divider {
+			margin: 0 0.5em;
+		}
+
+		.dialog-controls {
+			float: right;
+			margin: 0.5em;
+
+			.control-button {
+				@extend gk_booking_web-app_button;
+				padding: 0 1em;
+			}
+		}
+	}
+
+	@media only screen and (max-width: 40em) {
+		min-height: 0;
+		top: 20vh;
+		max-width: none;
+
+		.dialog {
+			.dialog-content {
+				padding: 0.5em;
+			}
+		}
+	}
+}

@@ -1,0 +1,13 @@
+﻿<div class="content">
+    <span ng-if="isLoading === true">Загружаем время :)...</span>
+    <ul id="tmap">
+        <li ng-repeat="timeMapTray in timeMap.TimeMapTrays">
+            <div ng-if="timeMapTray.IsAvilable" class="active" ng-click="setTimeValue(timeMapTray.StartTime, timeMapTray.EndTime)">
+                {{timeMapTray.StartTime}} --- {{timeMapTray.EndTime}}
+            </div>
+            <div ng-if="!timeMapTray.IsAvilable" class="inactive">
+                Время занято
+            </div>
+        </li>
+    </ul>
+</div>

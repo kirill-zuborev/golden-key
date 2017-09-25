@@ -1,0 +1,29 @@
+﻿gk_booking_web-app_booking-page_phone-number {
+	form {
+		margin: 0;
+		.container {
+			width: 10em;
+			display: block;
+			text-align: center;
+			margin: 0 auto;
+
+			input[type=text],
+			input[type=text]:active,
+			input[type=text]:focus {
+				margin: 0;
+				text-align: center;
+				border: solid 2px $gk_booking_web-app_primary-color;
+			}
+
+			input[type=submit] {
+				@extend gk_booking_web-app_submit-button;
+				padding: 0.2em;
+				margin: 0 auto;
+			}
+
+			small {
+				margin-top: 0.2em;
+			}
+		}
+	}
+}

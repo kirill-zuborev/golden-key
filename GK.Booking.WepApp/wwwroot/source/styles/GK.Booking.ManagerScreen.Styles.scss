@@ -1,0 +1,146 @@
+﻿@import '../../vendor/foundation/scss/foundation/components/global';
+@import '../../vendor/foundation/scss/foundation/components/type';
+@import '../../vendor/foundation/scss/foundation/components/grid';
+@import '../../vendor/foundation/scss/foundation/components/top-bar';
+@import "../../vendor/foundation/scss/foundation/components/tables";
+@import "../../vendor/foundation/scss/foundation/components/button-groups";
+@import "../../vendor/foundation/scss/foundation/components/dropdown";
+@import "GK.Booking.LogoutControl";
+@import "GK.Booking.Dialog";
+@import 'GK.Booking.LockScreen';
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none;
+}
+
+body {
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-repeat: repeat-x repeat-y;
+		background-image: url('GK.Booking.WebApp.PageBackground.jpg');
+		opacity: 0.3;
+		z-index: -1;
+	}
+
+	.row {
+		margin: 0 auto;
+		max-width: 80.0rem;
+		width: 100%;
+		min-width: 8.0em;
+	}
+
+	.table-wrapper {
+		margin-top: 1em;
+		position: relative;
+	}
+
+	.action-button {
+		width: 1.5em;
+		height: 1.5em;
+		border: 1.5px solid #4d2e0e;
+		padding: 0.2em;
+		font-size: 1.3em;
+		text-align: center;
+		cursor: pointer;
+		color: #4d2e0e;
+		float: left;
+		margin: 0px 0px 0px 5px;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-khtml-user-select: none;
+		user-select: none;
+
+		&:first-child {
+			margin-left: 15px;
+		}
+
+		&:hover {
+			box-shadow: 0 0 .1em rgba(0,0,0,0.4);
+			-webkit-box-shadow: 0 0 .1em rgba(0,0,0,0.4);
+		}
+
+		&:active {
+			position: relative;
+			top: 1px;
+		}
+	}
+
+	table {
+		width: 100%;
+		box-shadow: 0 0 10px rgba(0,0,0,0.5);
+		-webkit-box-shadow: 0 0 .1em rgba(0,0,0,0.4);
+
+		thead {
+		}
+
+		tbody {
+
+			tr, td {
+				position: relative;
+				color: #222222;
+				font-size: 0.875rem;
+				padding: 0.3625rem 0.625rem;
+				text-align: left;
+
+				.status-column {
+					min-width: 7.7em;
+				}
+
+				&.ng-enter {
+					animation: bounceInRight 0.5s;
+				}
+
+				&.ng-leave {
+					animation: bounceOutRight 0.5s;
+				}
+			}
+
+			.alert {
+				background-color: #ffe5e5;
+			}
+
+			.ready {
+				background-color: #d9f2e6;
+			}
+
+			.marked-text {
+				font-weight: bold;
+				color: #4d2e0e;
+			}
+		}
+	}
+
+	link-button {
+		text-decoration: underline;
+		font-size: 1.2em;
+
+		&:hover {
+			animation: bounceInDown 1s;
+		}
+	}
+
+	.alert-text {
+		color: #ff3333;
+	}
+
+	.dangerous-button {
+		@extend link-button;
+		color: #ff3333;
+	}
+
+	.usual-button {
+		@extend link-button;
+		color: #008000;
+	}
+
+	.button-splitter {
+		font-size: 1.2em;
+		font-weight: bold;
+	}
+}

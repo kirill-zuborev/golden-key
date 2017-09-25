@@ -1,0 +1,29 @@
+﻿<gk_booking_web-app_page>
+    <gk_booking_web-app_homepage>
+        <gk_booking_web-app_h1>
+            Закажи блинчики онлайн и забери без очереди ;)
+        </gk_booking_web-app_h1>
+        <gk_booking_web-app_p>
+            Так уж получилось, что в нашем кафетерии работает самая лучшая и весёлая команда поваров и специалистов по блинчикам и хот-догам в Могилёве.
+            <br />Мы открыты с 9:00 до 20:00 по будням и с 9:00 до 19:00 в выходные дни по адресу: бульвар Ленина, 3.
+        </gk_booking_web-app_p>
+        <gk_booking_web-app_homepage_opened-screen ng-if="isOpenedScreenShowed()">
+            <gk_booking_web-app_homepage_main-image>
+                <img src="wwwroot/GK.Booking.WebApp.HomePageMainImage.png" />
+            </gk_booking_web-app_homepage_main-image>
+            <gk_booking_web-app_homepage_book-button>
+                <a href="#/booking">Сделать заказ</a>
+            </gk_booking_web-app_homepage_book-button>
+            <gk_booking_web-app_p>
+                Сделайте онлайн заказ заранее. Всё просто: выбираете время, приходите в &laquo;Золотой Ключик&raquo;, называете секретный код кассиру, платите без очереди и наслаждаетесь своим заказом.
+            </gk_booking_web-app_p>
+        </gk_booking_web-app_homepage_opened-screen>
+        <gk_booking_web-app_homepage_closed-screen ng-if="isClosedScreenShowed()">
+            <gk_booking_web-app_homepage_main-image>
+                <img src="wwwroot/GK.Booking.WebApp.HomePageClosedImage.gif" />
+            </gk_booking_web-app_homepage_main-image>
+            <gk_booking_web-app_p>
+                Извините, но на сегодня наш рабочий день уже окончен. Приходите за блинчиками завтра.
+            </gk_booking_web-app_p>
+        </gk_booking_web-app_homepage_closed-screen>
+</gk_booking_web-app_page>

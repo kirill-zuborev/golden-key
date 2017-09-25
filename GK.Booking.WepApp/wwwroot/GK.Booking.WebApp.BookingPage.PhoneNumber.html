@@ -1,0 +1,8 @@
+﻿<form data-abide name="phoneForm" ng-submit="submitCallback()">
+    <div class="container">
+        <input type="text" required name="phone" ng-change="changePhoneValue(phoneForm.phone.$valid)" ng-model="phoneNumber" mask="999999999" clean="true" restrict="reject" placeholder="Номер телефона" />
+        <input type="submit" value="Отправить заказ" ng-if="isTrustedNumber"/>
+        <small class="secondary radius label" ng-if="phoneForm.phone.$invalid">Формат: 9 цифр без <br /> пробелов и знаков</small>
+        <small class="secondary radius label" ng-if="phoneForm.phone.$valid">{{message}}</small>
+    </div>
+</form>

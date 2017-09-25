@@ -1,0 +1,47 @@
+﻿.order-confirm-content {
+	p {
+		text-indent: 1em;
+		font-size: 0.9em;
+		padding: 0.5em;
+		display: block;
+		font-weight: 600;
+		color: $gk_booking_web-app_primary-text-color;
+
+		time {
+			text-decoration: underline;
+			font-size: 1em;
+		}
+	}
+
+	.order-confirm-section {
+		.control-container {
+			margin: 0;
+			width: 10em;
+			display: block;
+			text-align: center;
+			margin: 0 auto;
+
+			input[type=text],
+			input[type=text]:active,
+			input[type=text]:focus {
+				margin: 0;
+				border: solid 2px $gk_booking_web-app_primary-color;
+				text-align: center;
+			}
+
+			input[type=submit] {
+				@extend gk_booking_web-app_submit-button;
+				margin-top: 0.2em;
+			}
+		}
+	}
+
+	.order-expired-section {
+		margin: 0;
+		a {
+			text-decoration: underline;
+			color: $gk_booking_web-app_primary-color;
+			font-size: 1.1em;
+		}
+	}
+}

@@ -1,0 +1,56 @@
+﻿@import '../../vendor/foundation/scss/foundation/components/grid';
+@import '../../vendor/foundation/scss/foundation/components/panels';
+
+body {
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-repeat: repeat-x repeat-y;
+		background-image: url('GK.Booking.WebApp.PageBackground.jpg');
+		opacity: 0.3;
+		z-index: -1;
+	}
+
+	.content {
+	}
+
+	.error-label {
+		font-size: 4em;
+		opacity: 1;
+	}
+
+	.error-label-footer {
+		font-size: 0.5em;
+		margin-top: -25px;
+		margin-left: 53px;
+		margin-bottom: 0;
+		font-weight: bold;
+	}
+
+	.error-text {
+		font-size: 1em;
+		opacity: 1;
+		font-weight: bold;
+		text-align: justify;
+
+		@media #{$medium-up} {
+			padding: 1.5em 0;
+		}
+
+		@media #{$small-only} {
+			padding: 0;
+			margin-left: 0;
+		}
+	}
+
+	.panel {
+		opacity: 0.8;
+		margin: 15% auto;
+		max-width: 30em;
+	}
+}

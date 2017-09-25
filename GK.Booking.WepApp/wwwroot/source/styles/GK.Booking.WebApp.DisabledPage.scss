@@ -1,0 +1,17 @@
+﻿gk_booking_web-app_disabled-page {
+	display: block;
+	padding: 1em;
+
+	&_main-image > img {
+		display: block;
+		margin: 0 auto;
+	}
+
+	gk_booking_web-app_p:last-child {
+		margin-bottom: 0;
+	}
+
+	gk_booking_web-app_primary_text {
+		font-weight: bold;
+	}
+}

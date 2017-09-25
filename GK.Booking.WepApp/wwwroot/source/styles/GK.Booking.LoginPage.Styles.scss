@@ -1,0 +1,92 @@
+﻿@import '../../vendor/foundation/scss/foundation/components/global';
+@import "../../vendor/foundation/scss/foundation/components/buttons";
+@import "../../vendor/foundation/scss/foundation/components/forms";
+@import "../../vendor/foundation/scss/foundation/components/grid";
+@import '../../vendor/foundation/scss/foundation/components/type';
+@import "GK.Booking.Dialog";
+
+$gk_booking_web-app_primary-color: #57310D;
+
+gk_booking_web-app_button {
+    display: inline-block;
+    padding: 0 0.5em;
+    background-color: #ffffff;
+    border: solid 2px $gk_booking_web-app_primary-color;
+    line-height: 2em;
+    color: $gk_booking_web-app_primary-color;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+
+    &:active {
+        position: relative;
+        top: 1px;
+    }
+}
+
+body {
+
+    &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-repeat: repeat-x repeat-y;
+        background-image: url('GK.Booking.WebApp.PageBackground.jpg');
+        opacity: 0.3;
+        z-index: -1;
+    }
+
+    .log-in-form {
+        min-width: 23em;
+        margin-top: 25vh;
+        background-color: #ffffff;
+        border: 1px solid #cacaca;
+        border-radius: 3px;
+
+        .form-header {
+            padding: 0.7em;
+            height: 3em;
+            background-color: $gk_booking_web-app_primary-color;
+            color: white;
+
+            h4 {
+                color: white;
+                font-weight: normal;
+                margin-top: 0;
+                font-size: 1.1em;
+            }
+        }
+
+        .form-content {
+            padding: 1rem;
+            position: relative;
+
+            input {
+                margin: 0;
+            }
+
+            label {
+                margin-bottom: 1em;
+            }
+        }
+
+        .form-controls {
+            padding: 0 1rem 1rem;
+            display: flex;
+            -webkit-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+            .login-button {
+                @extend gk_booking_web-app_button;
+                margin: 0;
+            }
+        }
+    }
+}

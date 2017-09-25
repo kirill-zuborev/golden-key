@@ -1,0 +1,101 @@
+﻿gk_booking_lock-screen {
+	div.lock-screen {
+		align-items: center;
+		background-color: #111111;
+		opacity: 0.6;
+		bottom: 0;
+		display: flex;
+		-ms-flex-flow: column nowrap;
+		-webkit-flex-flow: column nowrap;
+		flex-flow: column nowrap;
+		justify-content: center;
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 100000;
+	}
+
+	p {
+		color: #ffffff;
+		font-weight: bold;
+		font-size: 1.0em;
+		owerflow: hidden;
+	}
+
+	@keyframes spin {
+		to {
+			-moz-transform: rotate(1turn);
+			-ms-transform: rotate(1turn);
+			-o-transform: rotate(1turn);
+			-webkit-transform: rotate(1turn);
+			transform: rotate(1turn);
+		}
+	}
+
+	.progress {
+		position: relative;
+		display: inline-block;
+		width: 5em;
+		height: 5em;
+		margin: 10px;
+		font-size: 0.55em;
+		text-indent: 999em;
+		overflow: hidden;
+		-moz-animation: spin 1s infinite steps(8);
+		-o-animation: spin 1s infinite steps(8);
+		-webkit-animation: spin 1s infinite steps(8);
+		animation: spin 1s infinite steps(8);
+	}
+
+	.progress:before,
+	.progress:after,
+	.progress > div:before,
+	.progress > div:after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 2.25em;
+		width: .5em;
+		height: 1.5em;
+		border-radius: .2em;
+		background: #eee;
+		box-shadow: 0 3.5em #eee;
+		-moz-transform-origin: 50% 2.5em;
+		-ms-transform-origin: 50% 2.5em;
+		-o-transform-origin: 50% 2.5em;
+		-webkit-transform-origin: 50% 2.5em;
+		transform-origin: 50% 2.5em;
+	}
+
+	.progress:before {
+		background: #555;
+	}
+
+	.progress:after {
+		-moz-transform: rotate(-45deg);
+		-ms-transform: rotate(-45deg);
+		-o-transform: rotate(-45deg);
+		-webkit-transform: rotate(-45deg);
+		transform: rotate(-45deg);
+		background: #777;
+	}
+
+	.progress > div:before {
+		-moz-transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg);
+		-o-transform: rotate(-90deg);
+		-webkit-transform: rotate(-90deg);
+		transform: rotate(-90deg);
+		background: #999;
+	}
+
+	.progress > div:after {
+		-moz-transform: rotate(-135deg);
+		-ms-transform: rotate(-135deg);
+		-o-transform: rotate(-135deg);
+		-webkit-transform: rotate(-135deg);
+		transform: rotate(-135deg);
+		background: #bbb;
+	}
+}

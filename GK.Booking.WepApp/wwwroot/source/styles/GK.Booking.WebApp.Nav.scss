@@ -1,0 +1,16 @@
+﻿gk_booking_web-app_nav {
+	.top-bar .top-bar-section li a {
+		font-family: $gk_booking_web-app_general-font;
+	}
+
+	.top-bar.expanded .toggle-topbar a span::after {
+		box-shadow: 0 0 0 1px #FFFFFF, 0 7px 0 1px #FFFFFF, 0 14px 0 1px #FFFFFF;
+	}
+
+	.top-bar.expanded .top-bar-section li:first-of-type a {
+		border-top: solid 1px;
+		border-color: $gk_booking_web-app_contr-color;
+	}
+
+	display: block;
+}

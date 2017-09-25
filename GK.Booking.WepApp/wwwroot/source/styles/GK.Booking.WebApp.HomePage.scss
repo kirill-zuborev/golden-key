@@ -1,0 +1,29 @@
+﻿gk_booking_web-app_homepage {
+	display: block;
+	padding: 1em;
+
+	&_main-image > img {
+		display: block;
+		margin: 0 auto;
+	}
+
+	&_book-button {
+		@extend gk_booking_web-app_button;
+		//display: block;
+		margin: 1em auto;
+		width: 14em;
+		line-height: 2em;
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
+		overflow: auto;
+
+		a, a:hover, a:active, a:visited {
+			color: $gk_booking_web-app_primary-color;
+		}
+	}
+
+	gk_booking_web-app_p:last-child {
+		margin-bottom: 0;
+	}
+}

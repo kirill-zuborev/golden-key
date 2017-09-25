@@ -1,0 +1,21 @@
+﻿gk_booking_web-app_feedback-page {
+	display: block;
+	padding: 1em;
+	@include clearfix();
+
+	textarea {
+		height: 8em;
+		resize: none;
+	}
+
+	&_send-button {
+		@extend gk_booking_web-app_button;
+		float: right;
+	}
+
+    input[type=submit] {
+        @extend gk_booking_web-app_button;
+		float: right;
+        background-color: $gk_booking_web-app_contr-color;
+    }
+}

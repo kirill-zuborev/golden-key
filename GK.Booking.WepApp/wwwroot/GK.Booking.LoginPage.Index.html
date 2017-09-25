@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Золотой ключик. Логин</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="wwwroot/GK.Booking.LoginPage.Styles.css" />
+</head>
+<body>
+    <div ng-app="GK.Booking.LoginPage.LoginController" ng-cloak>
+        <div ng-controller="GK.Booking.LoginPage.LoginController">
+            <div class="row">
+                <div class="medium-5 medium-centered columns">
+                    <form name="loginForm" ng-submit="submit()">
+                        <div class="log-in-form">
+                            <div class="form-header">
+                                <h4>Для входа Вы должны авторизоваться</h4>
+                            </div>
+                            <div class="form-content">
+                                <label>
+                                    Логин
+                                    <input type="text" name="login" placeholder="Ваш логин" ng-model="model.user.Login" required>
+                                    <small class="error" ng-if="loginForm.login.$error.required && !loginForm.login.$pristine">Введите свой логин</small>
+                                </label>
+                                
+                                <label>
+                                    Пароль
+                                    <input type="password" name="password" placeholder="Пароль" ng-model="model.user.Password" required>
+                                    <small class="error" ng-if="loginForm.password.$invalid && !loginForm.password.$pristine">Введите свой пароль</small>
+                                </label>
+                                
+                                <input id="remember-me" type="checkbox" ng-model="model.user.IsPersistent">
+                                <label for="remember-me">Запомнить меня</label>
+                            </div>
+                            <div class="form-controls">
+                                <button type="submit" class="login-button" ng-click="(loginForm.login.$pristine = false); (loginForm.password.$pristine = false)">Войти</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/foundation.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-foundation/0.8.0/mm-foundation-tpls.min.js"></script>
+
+    <script src="wwwroot/GK.Booking.LoginApp.min.js"></script>
+</body>
+</html>

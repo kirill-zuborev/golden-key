@@ -1,0 +1,70 @@
+﻿gk_booking_web-app_time-map {
+	div.content {
+		padding: 0;
+
+		span {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		@media #{$medium-up} {
+			ul {
+				height: 35em !important;
+			}
+		}
+
+		ul {
+			margin: 0px;
+			padding: 0em;
+			overflow: auto;
+			height: 90vh;
+			border: none !important;
+			border-style: solid;
+			opacity: .95;
+			list-style-type: none;
+
+			li {
+				font-weight: bold;
+				color: $gk_booking_web-app_primary-color;
+				border: 2px solid $gk_booking_web-app_primary-color;
+				line-height: 1.3em;
+				cursor: pointer;
+				text-align: center;
+				margin-bottom: 0.1em !important;
+				border-radius: 15px;
+
+				&.ng-enter {
+					-webkit-animation: bounceIn 0.5s;
+					animation: bounceIn 0.5s;
+				}
+
+				&.ng-leave {
+					-webkit-animation: bounceOut 0.5s;
+					animation: bounceOut 0.5s;
+				}
+
+				.active {
+					-webkit-animation: bounceIn 0.5s;
+					animation: bounceIn 0.5s;
+				}
+
+				.inactive {
+					opacity: 1;
+					background-color: gray;
+					color: white;
+					font-weight: normal;
+					border-radius: 12px;
+				}
+			}
+
+			li:hover {
+				background-color: #e6e6e6;
+			}
+
+			li:active {
+				box-shadow: 0 3px 3px rgba(0,0,0,0.3);
+			}
+		}
+	}
+}

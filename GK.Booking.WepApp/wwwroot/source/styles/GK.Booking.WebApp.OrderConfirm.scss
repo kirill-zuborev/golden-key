@@ -1,0 +1,100 @@
+﻿gk_booking_web-app_order-confirm {
+	.order-confirm-button {
+		@extend gk_booking_web-app_button;
+		float: left;
+		margin: 0.5em;
+		background-color: transparent;
+	}
+}
+
+div#orderConfirmModal {
+	padding: 0px;
+	border-width: 2px;
+	border-color: $gk_booking_web-app_primary-color;
+	border-style: solid;
+
+	div.modal-header {
+		background: $gk_booking_web-app_primary-color;
+		font-size: $h1-font-size;
+		color: white;
+		padding: 5px;
+	}
+
+	div.devider {
+		height: 0.3em;
+	}
+
+	div.accordion {
+		padding: 0.1em;
+		display: block;
+		margin: 0 auto;
+		overflow: auto;
+		section {
+			position: relative;
+			display: block;
+			height: 2em;
+			margin: 0.5em 0 0.5em 0.5em;
+			color: #333;
+			background-color: #4d2e0e;
+			overflow: hidden;
+			border-radius: 3px;
+		}
+
+		section h2 {
+			font-size: 1em;
+			font-weight: bold;
+			width: 12em;
+			height: 2em;
+			top: 12em;
+			left: 0;
+			text-indent: 1em;
+			padding: 0;
+			margin: 0;
+			color: #ddd;
+			-webkit-transform-origin: 0 0;
+			-moz-transform-origin: 0 0;
+			-ms-transform-origin: 0 0;
+			-o-transform-origin: 0 0;
+			transform-origin: 0 0;
+		}
+
+		section h2 a {
+			display: block;
+			width: 100%;
+			line-height: 2em;
+			text-decoration: none;
+			color: inherit;
+			outline: 0 none;
+		}
+
+		section:target {
+			width: 93%;
+			padding: 0 1em;
+			height: 30em;
+			color: #333;
+			background-color: #fff;
+		}
+
+		section:target h2 {
+			position: static;
+			font-size: 1.3em;
+			text-indent: 0;
+			color: #333;
+			transform: translateX(1em);
+		}
+
+		section,
+		section h2 {
+			-webkit-transition: all 1s ease;
+			-moz-transition: all 1s ease;
+			-ms-transition: all 1s ease;
+			-o-transition: all 1s ease;
+			transition: all 1s ease;
+		}
+	}
+
+	a.close-reveal-modal {
+		font-size: $h1-font-size;
+		right: 0.3em;
+	}
+}

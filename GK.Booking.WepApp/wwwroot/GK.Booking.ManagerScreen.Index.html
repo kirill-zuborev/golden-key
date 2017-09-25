@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Золотой ключик. Менеджер</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="wwwroot/GK.Booking.ManagerScreen.Styles.css" />
+</head>
+<body>
+    <div ng-app="GK.Booking.ManagerScreen.OrdersController" ng-cloak>
+        <div ng-controller="GK.Booking.ManagerScreen.OrdersController">
+
+            <gk_booking_logout-control on-logout-click="logout()">
+            </gk_booking_logout-control>
+
+            <div class="row">
+                <div class="table-wrapper">
+                    <gk_booking_lock-screen is-shown="isRequestInProgress">
+                    </gk_booking_lock-screen>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Содержание заказа</th>
+                                <th>Номер телефона</th>
+                                <th>Секретный код</th>
+                                <th>Время подачи</th>
+                                <th>Общая цена</th>
+                                <th>Статус</th>
+                                <th>До подачи</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="order in orders" ng-class="{'alert': getRemainingTimeInMinutes(order.TargetStartTime) < 5, 'ready': order.OrderStatus == Constant.ORDER_READY}" ng-init="playBeep()">
+                                <td>
+                                    <div ng-repeat="line in order.OrderLines">{{line.Name}} ({{line.Price}} р.)</div>
+                                </td>
+                                <td>{{order.CustomerPhoneNumber | PhoneNumber}}</td>
+                                <td>{{order.CustomerSecretCode}}</td>
+                                <td>{{order.TargetStartTime}} --- {{order.TargetEndTime}}</td>
+                                <td>{{order.TotalPrice}}</td>
+                                <td ng-class="{'marked-text': order.OrderStatus == READY_ORDER_STATUS}" class="status-column">{{order.OrderStatus | OrderStatus}}</td>
+                                <td ng-class="{'marked-text': getRemainingTimeInMinutes(order.TargetStartTime) < 5}">{{getRemainingTime(order.TargetEndTime)}}</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="action-button"
+                                             ng-click="setOrderStatus(order, Constant.ORDER_CONFIRMED)"
+                                             ng-if="order.OrderStatus == Constant.ORDER_READY"
+                                             title="Заказ не готов">
+                                            &#8634;
+                                        </div>
+                                        <div class="action-button"
+                                             ng-click="setOrderStatus(order, Constant.ORDER_READY)"
+                                             ng-if="order.OrderStatus != Constant.ORDER_READY"
+                                             title="Заказ готов">
+                                            &#9749;
+                                        </div>
+                                        <div class="action-button"
+                                             ng-click="setOrderStatus(order, Constant.ORDER_COMPLETED)"
+                                             title="Подтвердить завершение заказа">
+                                            &#10004;
+                                        </div>
+                                        <div class="action-button"
+                                             ng-click="setLockCandidate(order)"
+                                             data-dropdown="lockDialog"
+                                             aria-controls="lockDialog"
+                                             aria-expanded="false"
+                                             title="Добавить номер в чёрный список">
+                                            &#128274;
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <a data-dropdown="lockDialog" aria-controls="lockDialog" aria-expanded="false" style="display: none;"></a>
+                <div id="lockDialog" data-dropdown-content class="f-dropdown content" aria-hidden="true" tabindex="-1">
+                    Вы действительно хотите внести номер <span class="alert-text">{{lockCandidate.CustomerPhoneNumber | PhoneNumber}}</span> в чёрный список?<br />
+                    <div class="right">
+                        <a class="dangerous-button" ng-click="lockOrderPhone(lockCandidate)">&#10004;Да</a>
+                        <span class="button-splitter">&harr;</span>
+                        <a class="usual-button" ng-click="removeLockCandidate()">&#10008;Нет</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/foundation.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-foundation/0.8.0/mm-foundation-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/foundation/foundation.dropdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-audio/1.7.2/angular.audio.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" />
+
+    <script src="wwwroot/GK.Booking.ManagerApp.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "gk-booking-wepapp",
+  "dependencies": {
+    "angular": "~1.4.3",
+    "angular-route": "~1.4.4",
+    "foundation": "~5.5.2"
+  }
+}

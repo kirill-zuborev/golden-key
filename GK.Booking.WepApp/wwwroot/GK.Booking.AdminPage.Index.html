@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Золотой ключик. Администратор</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="wwwroot/GK.Booking.AdminPage.Styles.css" />
+</head>
+<body>
+    <div ng-app="GK.Booking.AdminPage.AdminController" ng-cloak>
+        <div ng-controller="GK.Booking.AdminPage.AdminController">
+
+            <gk_booking_logout-control on-logout-click="logout()">
+            </gk_booking_logout-control>
+
+            <div class="row">
+                <br />
+                <div class="phones-panel radius large-8 columns">
+                    <div class="sign">Чёрный список</div>
+                    <gk_booking_lock-screen is-shown="model.isDataRequestInProgress"
+                                            lock-text="Запрос данных...">
+                    </gk_booking_lock-screen>
+                    <ul class="data-grid">
+                        <li class="search-section">
+                            <div class="row collapse">
+                                <div class="small-11 medium-11 large-11 columns">
+                                    <input type="text" class="search-control-group"
+                                           mask="999999999999"
+                                           clean="true"
+                                           restrict="reject"
+                                           placeholder="Для поиска введите номер телефона или его часть"
+                                           ng-model="model.searchParams.searchString" />
+                                </div>
+                                <div class="small-1 medium-1 large-1 columns">
+                                    <span class="search-button postfix search-control-group" ng-click="getLockedPhones()">&#128269;</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="data-grid-header">
+                            <div class="row">
+                                <div class="small-5 medium-5 large-5 columns">Номер телефона</div>
+                                <div class="small-5 medium-5 large-5 columns">Дата блокировки</div>
+                                <div class="small-2 medium-2 large-2 columns"></div>
+                            </div>
+                        </li>
+                        <li ng-if="model.lockedPhones.list.length === 0">Список пуст</li>
+                        <li class="data-grid-row" ng-repeat="phone in model.lockedPhones.list">
+                            <div class="row">
+                                <div class="small-5 medium-5 large-5 columns">{{phone.PhoneNumber | PhoneNumber}}</div>
+                                <div class="small-5 medium-5 large-5 columns">{{phone.LockDate | date:'dd-MM-yyyy HH:mm'}}</div>
+                                <div class="small-2 medium-2 large-2 columns">
+                                    <div class="action-button"
+                                         title="Разблокировать номер"
+                                         data-dropdown="unlockDialog"
+                                         aria-controls="unlockDialog"
+                                         aria-expanded="false"
+                                         ng-click="setUnlockCandidate(phone.PhoneNumber)"
+                                         ng-if="phone.PhoneNumber != null">
+                                        &#128275;
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <pagination class="pager"
+                                total-items="model.lockedPhones.total"
+                                items-per-page="model.searchParams.pageSize"
+                                page="model.searchParams.pageIndex"
+                                max-size="10"
+                                previous-text="Предыдущая"
+                                next-text="Следующая"
+                                ng-if="model.lockedPhones.list.length !== 0 && model.lockedPhones.total > model.searchParams.pageSize"
+                                ng-click="getLockedPhones()"></pagination>
+                </div>
+                <div class="medium large-4 columns">
+                    <div class="application-state-panel">
+                        <div class="sign">Управление приложением</div>
+                        <gk_booking_lock-screen is-shown="model.isClientStatusRequestInProgress">
+                        </gk_booking_lock-screen>
+                        <div class="application-state-content">
+                            <div>Состояние клиента заказов</div>
+                            <div class="application-state-switch-group">
+                                <div class="application-state-switch tiny round">
+                                    <input id="bookingClientStateSwitch" type="checkbox" ng-click="switchClientState()" ng-model="model.isBookingClientEnabled">
+                                    <label for="bookingClientStateSwitch" class="state-indicator-label">
+                                        <span class="switch-on">I</span>
+                                        <span class="switch-off">O</span>
+                                    </label>
+                                </div>
+                                <span class="switch-text-on" ng-if="model.isBookingClientEnabled">Работает</span>
+                                <span class="switch-text-off" ng-if="!model.isBookingClientEnabled">Остановлен</span>
+                            </div>
+                            <div class="switch-description-text-label" ng-if="!model.isBookingClientEnabled || (model.isBookingClientEnabled && model.stateDescriptionText) != null">{{model.stateDescriptionText}}</div>
+                            <div class="switch-description-text-label" ng-if="model.isBookingClientEnabled && model.stateDescriptionText == null">
+                                Приложение работает в нормальном режиме
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a data-dropdown="unlockDialog" aria-controls="unlockDialog" aria-expanded="false" style="display: none;"></a>
+            <div id="unlockDialog" data-dropdown-content class="f-dropdown content" aria-hidden="true" tabindex="-1">
+                Вы действительно хотите разблокировать номер <span class="alert-text">{{model.unlockCandidate | PhoneNumber}}</span><br />
+                <div class="right">
+                    <a class="dangerous-button" ng-click="unlockPhone()">&#10004;Да</a>
+                    <span class="button-splitter">&harr;</span>
+                    <a class="usual-button" ng-click="removeUnlockCandidate()">&#10008;Нет</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngMask/3.0.16/ngMask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/foundation.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/foundation/foundation.dropdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-foundation/0.8.0/mm-foundation-tpls.min.js"></script>
+
+    <script src="wwwroot/GK.Booking.AdminApp.min.js"></script>
+</body>
+</html>

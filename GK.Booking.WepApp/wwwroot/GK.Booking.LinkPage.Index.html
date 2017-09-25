@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Золотой ключик. Навигатор</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="wwwroot/GK.Booking.LinkPage.Styles.css" />
+</head>
+<body>
+    <div ng-app="GK.Booking.LinkPage.LinkController" ng-cloak>
+        <div ng-controller="GK.Booking.LinkPage.LinkController">
+
+            <gk_booking_logout-control on-logout-click="logout()">
+            </gk_booking_logout-control>
+
+            <div class="row">
+                <div class="row">
+                    <div class="small-centered medium-centered large-centered columns">
+                        <div class="medium-4 columns">
+                            <div class="item-wrapper" ng-click="toKitchenScreen()">
+                                <div class="img-wrapper">
+                                    <a class="button expand go-button">Перейти на экран кухни</a>
+                                    <img src="wwwroot/GK.Booking.LinkPage.KitchenLogo.jpg">
+                                </div>
+                                <h3>Экран кухни</h3>
+                                <p>Отображает текущие заказы как для повара так и для посетителей.</p>
+                            </div>
+                        </div>
+
+                        <div class="medium-4 columns">
+                            <div class="item-wrapper" ng-click="toManagerScreen()">
+                                <div class="img-wrapper">
+                                    <div class="button expand go-button">Перейти на экран кассира</div>
+                                    <img src="wwwroot/GK.Booking.LinkPage.ManagerLogo.jpg">
+                                </div>
+                                <h3>Экран кассира</h3>
+                                <p>Управляйте текущими заказами с терминала кассира.</p>
+                            </div>
+                        </div>
+
+                        <div class="medium-4 columns">
+                            <div class="item-wrapper" ng-click="toAdminPage()">
+                                <div class="img-wrapper">
+                                    <div class="button expand go-button">Перейти на экран администратора</div>
+                                    <img src="wwwroot/GK.Booking.LinkPage.AdminLogo.jpg">
+                                </div>
+                                <h3>Экран администратора</h3>
+                                <p>Используйте панель администратора для управления чёрными списками.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-foundation/0.8.0/mm-foundation-tpls.min.js"></script>
+    
+    <script src="wwwroot/GK.Booking.LinkApp.min.js"></script>
+</body>
+</html>

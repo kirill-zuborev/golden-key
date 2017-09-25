@@ -1,0 +1,52 @@
+﻿gk_booking_logout-control {
+	.slide-panel {
+		position: fixed;
+		top: 0;
+		right: 5em;
+		cursor: pointer;
+		-webkit-transition-duration: 0.3s;
+		-moz-transition-duration: 0.3s;
+		-o-transition-duration: 0.3s;
+		transition-duration: 0.3s;
+		z-index: 100000;
+
+		.slide-panel-inner {
+			background-color: #4d2e0e;
+			position: fixed;
+			top: -2em;
+			right: 5em;
+			height: 2em;
+			width: 11em;
+			padding: 0.3em;
+			-webkit-transition-duration: 0.3s;
+			-moz-transition-duration: 0.3s;
+			-o-transition-duration: 0.3s;
+			transition-duration: 0.3s;
+			color: white;
+			text-align: center;
+
+			a {
+				color: white;
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+
+		.panel-img {
+			background-color: #4d2e0e;
+			width: 11em;
+			padding: 0.3em;
+			border-radius: 0 0 5px 5px;
+		}
+	}
+
+	.slide-panel:hover {
+		top: 2em;
+	}
+
+	.slide-panel:hover .slide-panel-inner {
+		top: 0;
+	}
+}

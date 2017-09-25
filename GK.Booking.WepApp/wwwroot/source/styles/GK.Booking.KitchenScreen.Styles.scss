@@ -1,0 +1,143 @@
+﻿@import '../../vendor/foundation/scss/foundation/components/global';
+@import '../../vendor/foundation/scss/foundation/components/type';
+@import '../../vendor/foundation/scss/foundation/components/grid';
+@import '../../vendor/foundation/scss/foundation/components/top-bar';
+@import "../../vendor/foundation/scss/foundation/components/tables";
+@import "GK.Booking.LogoutControl";
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none;
+}
+
+body {
+
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-repeat: repeat-x repeat-y;
+		background-image: url('GK.Booking.WebApp.PageBackground.jpg');
+		opacity: 0.3;
+		z-index: -1;
+	}
+
+	.splash-screen {
+		background-image: url('GK.Booking.KitchenScreen.SplashScreen.gif');
+		bottom: 0;
+		left: 0;
+		position: fixed;
+		right: 0;
+		top: 0;
+		-webkit-background-size: 100% 100%;
+		-moz-background-size: 100% 100%;
+		-o-background-size: 100% 100%;
+		background-size: 100% 100%;
+		z-index: 10000;
+
+		&.ng-enter {
+			animation: zoomIn 0.5s;
+		}
+
+		&.ng-leave {
+			animation: zoomOut 0.5s;
+		}
+	}
+
+	table {
+		width: 100%;
+		box-shadow: 0 0 10px rgba(0,0,0,0.5);
+
+		thead {
+		}
+
+		tbody {
+
+			tr, td {
+				color: #222222;
+				font-size: 0.875rem;
+				padding: 0.3625rem 0.625rem;
+				text-align: left;
+
+				.status-column {
+					min-width: 7.7em;
+				}
+
+				&.ng-enter {
+					animation: bounceInRight 0.5s;
+				}
+
+				&.ng-leave {
+					animation: bounceOutRight 0.5s;
+				}
+			}
+
+			.alert {
+				background-color: #ffe5e5;
+			}
+
+			.ready {
+				background-color: #d9f2e6;
+			}
+
+			.marked-text {
+				font-weight: bold;
+				color: #4d2e0e;
+			}
+		}
+	}
+
+	.slide-panel {
+		position: fixed;
+		top: 0;
+		right: 5em;
+		cursor: pointer;
+		-webkit-transition-duration: 0.3s;
+		-moz-transition-duration: 0.3s;
+		-o-transition-duration: 0.3s;
+		transition-duration: 0.3s;
+		z-index: 100000;
+
+		.slide-panel-inner {
+			background-color: #4d2e0e;
+			position: fixed;
+			top: -2em;
+			right: 5em;
+			height: 2em;
+			width: 11em;
+			padding: 0.3em;
+			-webkit-transition-duration: 0.3s;
+			-moz-transition-duration: 0.3s;
+			-o-transition-duration: 0.3s;
+			transition-duration: 0.3s;
+			color: white;
+			text-align: center;
+
+			a {
+				color: white;
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+
+		.panel-img {
+			background-color: #4d2e0e;
+			width: 11em;
+			padding: 0.3em;
+			border-radius: 0 0 5px 5px;
+		}
+	}
+
+	.slide-panel:hover {
+		top: 2em;
+	}
+
+	.slide-panel:hover .slide-panel-inner {
+		top: 0;
+	}
+}

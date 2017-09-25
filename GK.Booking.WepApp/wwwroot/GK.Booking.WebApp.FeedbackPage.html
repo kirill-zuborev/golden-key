@@ -1,0 +1,37 @@
+﻿<gk_booking_web-app_page>
+    <gk_booking_web-app_feedback-page>
+        <gk_booking_web-app_feedback-page_screen-wrapper ng-if="!isFeedbackSent">
+            <gk_booking_web-app_h1>
+                Отзывы
+            </gk_booking_web-app_h1>
+            <gk_booking_web-app_p>
+                Здесь Вы можете оставлять Ваши отзывы о работе этого приложения, как положительные так и отрицательные.
+            </gk_booking_web-app_p>
+            <gk_booking_web-app_p>
+                Такая обратная связь позволит нам сделать приложение лучше, сохранив то, что Вам нравится!
+            </gk_booking_web-app_p>
+            <gk_booking_web-app_p>
+                Спасибо!
+            </gk_booking_web-app_p>
+            <form name="feedbackForm" ng-submit="sendFeedback()">
+                <textarea ng-model="feedbackText" name="feedbackTextArea" required placeholder="Оставьте свой отзыв тут"></textarea>
+                <input type="submit" value="Отправить"/>
+            </form>
+        </gk_booking_web-app_feedback-page_screen-wrapper>
+        <gk_booking_web-app_feedback-page__screen-wrapper ng-if="isFeedbackSent">
+            <gk_booking_web-app_h1>
+                Отзыв отправлен
+            </gk_booking_web-app_h1>
+            <gk_booking_web-app_p>
+                Ваш отзыв был отправлен администратору. Мы обязательно примем к сведению Ваши пожелания.
+            </gk_booking_web-app_p>
+            <gk_booking_web-app_p>
+                Отзыв можно отправлять не чаще одного раза в сутки.
+            </gk_booking_web-app_p>
+            <gk_booking_web-app_p>
+                Спасибо!
+            </gk_booking_web-app_p>
+        </gk_booking_web-app_feedback-page__screen-wrapper>
+    </gk_booking_web-app_feedback-page>
+    <gk_booking_lock-screen is-shown="requestInProgress" />
+</gk_booking_web-app_page>

@@ -1,0 +1,12 @@
+﻿html, body, *[ng-app], *[ng-view] {
+	height: 100%;
+	font-family: $gk_booking_web-app_general-font;
+}
+
+html {
+	font-size: $gk_booking_web-app_base-font-size;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none;
+}

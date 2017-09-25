@@ -1,0 +1,91 @@
+﻿@import '../../vendor/foundation/scss/foundation/components/grid';
+@import '../../vendor/foundation/scss/foundation/components/thumbs';
+@import "GK.Booking.Dialog";
+@import "GK.Booking.LogoutControl";
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none;
+}
+
+body {
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-repeat: repeat-x repeat-y;
+		background-image: url('GK.Booking.WebApp.PageBackground.jpg');
+		opacity: 0.3;
+		z-index: -1;
+	}
+
+	.item-wrapper {
+		padding: 20px;
+		border: 2px solid #efefef;
+		border-radius: 7px;
+		margin-top: 40px;
+		background-color: white;
+		cursor: pointer;
+
+		&:hover {
+			.img-wrapper {
+				img {
+					-webkit-filter: grayscale(0);
+					-moz-filter: grayscale(0);
+					-ms-filter: grayscale(0);
+					filter: grayscale(0);
+				}
+
+				.go-button {
+					bottom: 0;
+				}
+			}
+		}
+	}
+
+	.img-wrapper {
+		margin-bottom: 20px;
+		position: relative;
+		overflow: hidden;
+
+		.go-button {
+			-webkit-transition: all 0.2s ease;
+			transition: all 0.2s ease;
+			background-color: #333;
+			padding: 16px 8px;
+			bottom: -150px;
+			position: absolute;
+			z-index: 2;
+			color: #fff;
+			border: none;
+			box-shadow: none;
+			width: 100%;
+			font-size: 0.9em;
+			opacity: 0.9;
+			cursor: pointer;
+		}
+
+		img {
+			-webkit-transition: all 0.2s ease;
+			transition: all 0.2s ease;
+			-webkit-filter: grayscale(1);
+			-moz-filter: grayscale(1);
+			-ms-filter: grayscale(1);
+			filter: grayscale(1);
+			width: 100%;
+		}
+	}
+
+	h3 {
+		font-size: 22px;
+	}
+
+	p {
+		color: #888;
+		font-size: 13px;
+		margin-bottom: 0;
+	}
+}

@@ -1,0 +1,256 @@
+﻿@import '../../vendor/foundation/scss/foundation/components/global';
+@import '../../vendor/foundation/scss/foundation/components/type';
+@import '../../vendor/foundation/scss/foundation/components/grid';
+@import "../../vendor/foundation/scss/foundation/components/tables";
+@import "../../vendor/foundation/scss/foundation/components/pagination";
+@import "../../vendor/foundation/scss/foundation/components/buttons";
+@import "../../vendor/foundation/scss/foundation/components/forms";
+@import "../../vendor/foundation/scss/foundation/components/dropdown";
+@import "../../vendor/foundation/scss/foundation/components/panels";
+@import "../../vendor/foundation/scss/foundation/components/switches";
+@import "../../vendor/foundation/scss/foundation/components/labels";
+@import "GK.Booking.LogoutControl";
+@import "GK.Booking.Dialog";
+@import 'GK.Booking.LockScreen';
+
+$gk_booking_web-app_primary-color: #57310D;
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none;
+}
+
+body {
+
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-repeat: repeat-x repeat-y;
+		background-image: url('GK.Booking.WebApp.PageBackground.jpg');
+		opacity: 0.3;
+		z-index: -1;
+	}
+
+	ul.data-grid {
+		list-style-type: none;
+		border: solid 1px #DDDDDD;
+		margin: 0;
+		padding: 0.2em;
+		height: 31em;
+		overflow-y: auto;
+
+		li {
+			padding: 0.4em 1em;
+			font-size: 0.9em;
+			min-height: 2.5em;
+
+			&.search-section {
+				padding: 0;
+
+				.search-control-group {
+					margin-bottom: 5px;
+				}
+
+				.search-button {
+					display: inline-block;
+					line-height: 2em;
+					color: $gk_booking_web-app_primary-color;
+					font-weight: bold;
+					font-size: 1.1em;
+					cursor: pointer;
+					text-align: center;
+					background: white;
+					-webkit-user-select: none;
+					-moz-user-select: none;
+					-khtml-user-select: none;
+					user-select: none;
+
+					&:hover {
+						background: #EEEEEE;
+						box-shadow: 0 0 .1em rgba(0,0,0,0.4);
+						-webkit-box-shadow: 0 0 .1em rgba(0,0,0,0.4);
+					}
+
+					&:active {
+						position: relative;
+						top: 1px;
+					}
+				}
+			}
+
+			&.data-grid-header {
+				background: #F5F5F5;
+				font-weight: bold;
+			}
+
+			&.data-grid-row:nth-child(2n) {
+				background: #F9F9F9;
+			}
+		}
+	}
+
+	.action-button {
+		width: 1.5em;
+		height: 1.5em;
+		border: 1.5px solid $gk_booking_web-app_primary-color;
+		//padding: 0.2em;
+		font-size: 1.3em;
+		text-align: center;
+		cursor: pointer;
+		color: $gk_booking_web-app_primary-color;
+		margin: 0 auto;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-khtml-user-select: none;
+		user-select: none;
+
+		&:hover {
+			box-shadow: 0 0 .1em rgba(0,0,0,0.4);
+			-webkit-box-shadow: 0 0 .1em rgba(0,0,0,0.4);
+		}
+
+		&:active {
+			position: relative;
+			top: 1px;
+		}
+	}
+
+	.pager {
+		margin: 0.3em;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: auto;
+	}
+
+	ul.pagination li.current a {
+		background: $gk_booking_web-app_primary-color;
+
+		&:hover {
+			background: $gk_booking_web-app_primary-color;
+		}
+	}
+
+	ul.pagination li a, ul.pagination li button {
+		color: $gk_booking_web-app_primary-color;
+		font-style: italic;
+	}
+
+	link-button {
+		text-decoration: underline;
+		font-size: 1.2em;
+	}
+
+	.alert-text {
+		color: #ff3333;
+		white-space: nowrap;
+	}
+
+	.dangerous-button {
+		@extend link-button;
+		color: #ff3333;
+	}
+
+	.usual-button {
+		@extend link-button;
+		color: #008000;
+	}
+
+	.button-splitter {
+		font-size: 1.2em;
+		font-weight: bold;
+	}
+
+	.phones-panel {
+		@include panel( $bg: white, $padding: 5px, $adjust:true );
+	}
+
+	.application-state-panel {
+		@include panel( $bg: white, $padding: 5px, $adjust:true );
+		position: relative;
+
+		.application-state-content {
+			padding: 0.3em;
+
+			.application-state-switch-group {
+				position: relative;
+				display: block;
+				margin-top: 0.3em;
+
+				.application-state-switch {
+					$transition-speed: $switch-paddle-transition-speed;
+					$transition-ease: $switch-paddle-transition-ease;
+					$height: $switch-height-tny;
+					$paddle-bg: $switch-paddle-bg;
+					$active-color: $gk_booking_web-app_primary-color;
+					$radius: true;
+					$base-style: true;
+
+					@include switch($transition-speed, $transition-ease, $height, $paddle-bg, $active-color, $radius, $base-style);
+					float: left;
+					margin-bottom: 0;
+
+					.switch-on {
+						position: absolute;
+						left: -37px;
+						top: 1px;
+						color: white;
+						font-weight: bold;
+						font-size: 16px;
+					}
+
+					.switch-off {
+						position: absolute;
+						left: -19px;
+						top: 1px;
+						color: $gk_booking_web-app_primary-color;
+						font-weight: bold;
+						font-size: 16px;
+					}
+
+					label {
+						margin: 0;
+					}
+				}
+
+				switch-text {
+					margin-left: 5px;
+					font-weight: bold;
+				}
+
+				.switch-text-on {
+					@extend switch-text;
+					color: $gk_booking_web-app_primary-color;
+				}
+
+				.switch-text-off {
+					@extend switch-text;
+					color: #d10000;
+				}
+			}
+
+			.switch-description-text-label {
+				@include label( $padding:5px, $text-size:13px, $bg:#e6e6e6, $radius:3px );
+				min-width: 100%;
+				margin-top: 0.9em;
+				text-align: left;
+				white-space: normal;
+			}
+		}
+	}
+
+	.sign {
+		background: $gk_booking_web-app_primary-color;
+		font-weight: bold;
+		padding: 0.1em 0.5em;
+		color: white;
+	}
+}
+
+/*.state-indicator-label {
+	margin-bottom: 0;
+}*/
